@@ -99,6 +99,8 @@ Data summary
 
 ## Options to read_csv
 
+check out ‘?read_csv()’ for more information.
+
 ``` r
 litters_df = read_csv("./data/data_import_examples/FAS_litters.csv", skip = 10, col_names = FALSE)
 ```
