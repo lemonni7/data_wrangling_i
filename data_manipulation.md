@@ -34,3 +34,88 @@ litters_df = read_csv("./data/data_import_examples/FAS_litters.csv")
 ``` r
 litters_df = janitor::clean_names(litters_df)
 ```
+
+## ‘select’
+
+Choose some columns
+
+``` r
+select(litters_df, group, gd0_weight:gd_of_birth)
+```
+
+    ## # A tibble: 49 × 4
+    ##    group gd0_weight gd18_weight gd_of_birth
+    ##    <chr>      <dbl>       <dbl>       <dbl>
+    ##  1 Con7        19.7        34.7          20
+    ##  2 Con7        27          42            19
+    ##  3 Con7        26          41.4          19
+    ##  4 Con7        28.5        44.1          19
+    ##  5 Con7        NA          NA            20
+    ##  6 Con7        NA          NA            20
+    ##  7 Con7        NA          NA            20
+    ##  8 Con8        NA          NA            20
+    ##  9 Con8        NA          NA            20
+    ## 10 Con8        28.5        NA            20
+    ## # ℹ 39 more rows
+
+Renaming columns
+
+``` r
+select(litters_df, GROUP = group, Litter_Number = litter_number)
+```
+
+    ## # A tibble: 49 × 2
+    ##    GROUP Litter_Number  
+    ##    <chr> <chr>          
+    ##  1 Con7  #85            
+    ##  2 Con7  #1/2/95/2      
+    ##  3 Con7  #5/5/3/83/3-3  
+    ##  4 Con7  #5/4/2/95/2    
+    ##  5 Con7  #4/2/95/3-3    
+    ##  6 Con7  #2/2/95/3-2    
+    ##  7 Con7  #1/5/3/83/3-3/2
+    ##  8 Con8  #3/83/3-3      
+    ##  9 Con8  #2/95/3        
+    ## 10 Con8  #3/5/2/2/95    
+    ## # ℹ 39 more rows
+
+Select helpers
+
+``` r
+select(litters_df, starts_with("gd"))
+```
+
+    ## # A tibble: 49 × 3
+    ##    gd0_weight gd18_weight gd_of_birth
+    ##         <dbl>       <dbl>       <dbl>
+    ##  1       19.7        34.7          20
+    ##  2       27          42            19
+    ##  3       26          41.4          19
+    ##  4       28.5        44.1          19
+    ##  5       NA          NA            20
+    ##  6       NA          NA            20
+    ##  7       NA          NA            20
+    ##  8       NA          NA            20
+    ##  9       NA          NA            20
+    ## 10       28.5        NA            20
+    ## # ℹ 39 more rows
+
+``` r
+select(litters_df, litter_number, everything())
+```
+
+    ## # A tibble: 49 × 8
+    ##    litter_number   group gd0_weight gd18_weight gd_of_birth pups_born_alive
+    ##    <chr>           <chr>      <dbl>       <dbl>       <dbl>           <dbl>
+    ##  1 #85             Con7        19.7        34.7          20               3
+    ##  2 #1/2/95/2       Con7        27          42            19               8
+    ##  3 #5/5/3/83/3-3   Con7        26          41.4          19               6
+    ##  4 #5/4/2/95/2     Con7        28.5        44.1          19               5
+    ##  5 #4/2/95/3-3     Con7        NA          NA            20               6
+    ##  6 #2/2/95/3-2     Con7        NA          NA            20               6
+    ##  7 #1/5/3/83/3-3/2 Con7        NA          NA            20               9
+    ##  8 #3/83/3-3       Con8        NA          NA            20               9
+    ##  9 #2/95/3         Con8        NA          NA            20               8
+    ## 10 #3/5/2/2/95     Con8        28.5        NA            20               8
+    ## # ℹ 39 more rows
+    ## # ℹ 2 more variables: pups_dead_birth <dbl>, pups_survive <dbl>

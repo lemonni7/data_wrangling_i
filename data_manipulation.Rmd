@@ -14,3 +14,28 @@ litters_df = read_csv("./data/data_import_examples/FAS_litters.csv")
 litters_df = janitor::clean_names(litters_df)
 ```
 
+## 'select'
+
+Choose some columns
+
+```{r}
+select(litters_df, group, gd0_weight:gd_of_birth)
+```
+
+Renaming columns
+
+```{r}
+select(litters_df, GROUP = group, Litter_Number = litter_number)
+```
+
+Select helpers
+
+```{r}
+select(litters_df, starts_with("gd"))
+```
+
+```{r}
+select(litters_df, litter_number, everything())
+```
+
+
